@@ -71,11 +71,11 @@
               <form role="form"  #taskForm="ngForm" (ngSubmit)="submitOrderDetails(taskForm)">
                 <div class="input-group input-group-outline mb-3">
                   <label class="form-label">Title</label>
-                  <input type="text" class="form-control" name="title" [(ngModel)]="form.title" required required>
+                  <input type="text" class="form-control" name="title" [(ngModel)]="form.title"  required maxlength="100">
                 </div>
                 <label class="form-label">Description</label>
                 <div class="input-group input-group-outline mb-3">
-                  <textarea type="text" class="form-control" name="description" rows="4" [(ngModel)]="form.description"  required></textarea>
+                  <textarea type="text" class="form-control" name="description" rows="4" [(ngModel)]="form.description"  required maxlength="150"></textarea>
                 </div>
                 <label class="form-label">Priority</label>
                 <div class="input-group input-group-outline mb-3">
