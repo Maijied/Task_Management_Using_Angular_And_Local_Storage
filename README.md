@@ -1,5 +1,6 @@
 # SELIES ASSESSMENT
 
+## [N.B]
 `If` [npm install](https://stackoverflow.com/questions/66020820/npm-when-to-use-force-and-legacy-peer-deps) `is not working use` [npm install --legacy-peer-deps](https://stackoverflow.com/questions/66020820/npm-when-to-use-force-and-legacy-peer-deps)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
