@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'app-done',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./done.component.css']
 })
 export class DoneComponent {
+  constructor(private localStore: LocalStorageService) {}
   public collection: any[] = [];
   public to_dos: any[] = [];
   ngOnInit(): void{
@@ -19,6 +21,9 @@ export class DoneComponent {
     }
   }
   delete(data:any){
-    localStorage.removeItem("taskList"+data.id);
+    //Without Service
+    // localStorage.removeItem("taskList"+data.id);
+    //Using Service
+    this.localStore.removeData("taskList"+data.id);
   }
 }

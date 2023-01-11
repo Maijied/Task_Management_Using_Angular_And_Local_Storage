@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'app-in-progress',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./in-progress.component.css']
 })
 export class InProgressComponent {
+  constructor(private localStore: LocalStorageService) {}
   public collection: any[] = [];
   public to_dos: any[] = [];
   ngOnInit(): void{
@@ -21,6 +23,9 @@ export class InProgressComponent {
   }
   changeToDone(data:any){
     data['status'] = '3';
-    localStorage.setItem("taskList"+data.id , JSON.stringify(data));
+    //Without Service
+    // localStorage.setItem("taskList"+data.id , JSON.stringify(data));
+    //Using Service
+    this.localStore.saveData("taskList"+data.id,  JSON.stringify(data));
   }
 }

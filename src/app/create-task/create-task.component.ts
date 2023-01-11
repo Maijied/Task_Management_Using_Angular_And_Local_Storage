@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {NgForm} from "@angular/forms";
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'app-create-task',
@@ -7,6 +8,8 @@ import {NgForm} from "@angular/forms";
   styleUrls: ['./create-task.component.css']
 })
 export class CreateTaskComponent {
+  constructor(private localStore: LocalStorageService) {}
+
   public collection: any[] = [];
   arr :any;
   public error:any;
@@ -21,8 +24,6 @@ export class CreateTaskComponent {
     attachment:null,
     sub_task:null,
   }
-
-
 
   ngOnInit(): void{
 
@@ -41,6 +42,9 @@ export class CreateTaskComponent {
       attachment: this.form.attachment,
       sub_task: this.form.sub_task,
     }
-    localStorage.setItem("taskList"+taskData.id , JSON.stringify(taskData));
+    //Using Service
+    this.localStore.saveData("taskList"+taskData.id,  JSON.stringify(taskData));
+    //Without Service
+    // localStorage.setItem("taskList"+taskData.id , JSON.stringify(taskData));
   }
 }
