@@ -12,7 +12,8 @@ export class DoneComponent {
   public to_dos: any[] = [];
   ngOnInit(): void{
     for (let array of Object.values(localStorage)) {
-      this.collection.push(JSON.parse(array) );
+      let data = this.localStore.getDecryptData(array);
+      this.collection.push(JSON.parse(data) );
     }
     for (let item of this.collection ){
       if (item.status == '3'){

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {NgForm} from "@angular/forms";
 import { LocalStorageService } from '../services/local-storage.service';
+import  *  as CryptoJS from  'crypto-js';
 
 @Component({
   selector: 'app-create-task',

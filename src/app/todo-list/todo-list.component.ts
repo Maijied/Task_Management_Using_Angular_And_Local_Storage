@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -6,11 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent {
+  constructor(private localStore: LocalStorageService) {}
+
   public collection: any[] = [];
   public to_dos: any[] = [];
+  // key = "M3HxS";
+
   ngOnInit(): void{
     for (let array of Object.values(localStorage)) {
-      this.collection.push(JSON.parse(array) );
+      let data = this.localStore.getDecryptData(array);
+      this.collection.push(JSON.parse(data));
     }
     for (let item of this.collection ){
       if (item.status == '1'){
@@ -21,13 +27,18 @@ export class TodoListComponent {
 
   changeToProgress(data:any){
     data['status'] = '2';
-    localStorage.setItem("taskList"+data.id , JSON.stringify(data));
+    //Without Service
+    //localStorage.setItem("taskList"+data.id , JSON.stringify(data));
+    //Using Service
+    this.localStore.saveData("taskList"+data.id,  JSON.stringify(data));
   }
   changeToDone(data:any){
     data['status'] = '3';
-    localStorage.setItem("taskList"+data.id , JSON.stringify(data));
+    //Without Service
+    // localStorage.setItem("taskList"+data.id , JSON.stringify(data));
+    //Using Service
+    this.localStore.saveData("taskList"+data.id,  JSON.stringify(data));
   }
-
 
 
 }
